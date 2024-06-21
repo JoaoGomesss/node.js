@@ -1,9 +1,9 @@
-module.exports = function(app) {
+module.exports = (app) =>  {
     let HomeController = {
-    index: function(req, res) {
+    index: (req, res) =>  {
     res.render('home/index');
     },
-    login: function(req, res) {
+    login: (req, res) => {
         let email = req.body.usuario.email
         , nome = req.body.usuario.nome;
         if(email && nome) {
@@ -15,7 +15,7 @@ module.exports = function(app) {
         res.redirect('/');
         }
         },
-        logout: function(req, res) {
+        logout: (req, res) => {
             req.session.destroy();
         res.redirect('/');
         }

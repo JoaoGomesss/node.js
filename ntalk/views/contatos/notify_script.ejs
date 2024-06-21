@@ -1,0 +1,21 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+let socket = io.connect('http://localhost:3000');
+let notify = (data) =>{
+let id = 'notify_' + data.el;
+let notify = document.getElementById(id);
+notify.textContent = data.msg;
+};
+socket.on('notify-onlines', (email)=> {
+notify({el: email, msg: 'Online'});
+});
+socket.on('notify-offline', (email) =>{
+notify({el: email, msg: 'Offline'});
+});
+socket.on('new-message', (data)=> {
+notify({el: data.email, msg: 'Mensagem'});
+let id = 'chat_' + data.email;
+let chat = document.getElementById(id);
+chat.href += '?' + data.sala;
+});
+</script>
